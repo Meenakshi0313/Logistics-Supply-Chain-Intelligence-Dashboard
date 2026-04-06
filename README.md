@@ -45,6 +45,12 @@ The project is built on a robust Star Schema involving 11 optimized views, ensur
 
 - v_Routes: Defined logistics corridors used to calculate the Route Profitability Index (RPI).
 
+  <details>
+  <summary> Data Model </summary>
+  <br>
+  <img src="Assets/Logistics_Star_Schema_Data_Model.png" width="900" alt="Logistics_Star_Schema_Data_Model">
+  </details>
+
  --- 
 
 ### 🖼️ Visualizations & Insights
@@ -122,29 +128,21 @@ The project is built on a robust Star Schema involving 11 optimized views, ensur
 
 ---
 
- <details>
-  <summary> Data Model </summary>
-  <br>
-  <img src="Assets/Logistics_Star_Schema_Data_Model.png" width="900" alt="Logistics_Star_Schema_Data_Model">
-  </details>
-
-  ---
-
 ### 🧰 Tools & Skills Used
 
 - **Power BI**: Advanced visualization, UI/UX design, and report publishing.
 
 - **DAX (Data Analysis Expressions)**:
 
-      Time Intelligence: YoY Growth, Prior Year (PY) calculations.
+  Time Intelligence: YoY Growth, Prior Year (PY) calculations.
       
-      Dynamic Labels: Handling nulls/blanks for professional "0.0%" reporting.
+  Dynamic Labels: Handling nulls/blanks for professional "0.0%" reporting.
       
-      Custom Metrics: Route Profitability Index (RPI) and Fleet Utilization %.
+  Custom Metrics: Route Profitability Index (RPI) and Fleet Utilization %.
       
-      Power Query: Data cleaning, ETL processes, and merging disparate datasets.
+  Power Query: Data cleaning, ETL processes, and merging disparate datasets.
       
-      Data Modeling: Star Schema design, managing Many-to-One relationships.
+  Data Modeling: Star Schema design, managing Many-to-One relationships.
 
 ---
 
