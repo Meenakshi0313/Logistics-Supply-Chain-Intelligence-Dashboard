@@ -34,26 +34,25 @@ BEGIN
 		TRUNCATE TABLE silver.customers;
 		PRINT '>> Inserting Data Into: silver.customers';
 		INSERT INTO silver.customers (
-			customer_id              ,
-			customer_name            ,
-			customer_type           ,
-			credit_term_days ,             
-			primary_freight_type,
-			account_status ,
-			contract_start_date , 
+            customer_id,
+			customer_name, 
+			customer_type, 
+			credit_term_days,
+            primary_freight_type, 
+			account_status, 
+			contract_start_date,
 			annual_revenue_potential
-		    )
-
-			SELECT 
-			TRIM(customer_id),
-			TRIM(customer_name),
-			UPPER(LEFT(TRIM(customer_type), 1)) + LOWER(SUBSTRING(TRIM(customer_type), 2, LEN(customer_type))) AS event_type,
-			ISNULL(credit_term_days, 30), -- Default to 30 if missing
-			UPPER(LEFT(TRIM(primary_freight_type), 1)) + LOWER(SUBSTRING(TRIM(primary_freight_type), 2, LEN(primary_freight_type))) AS event_type,
-			UPPER(LEFT(TRIM(account_status), 1)) + LOWER(SUBSTRING(TRIM(account_status), 2, LEN(account_status))) AS event_type,
-			TRY_CAST(contract_start_date AS DATE) ,
-			CAST(annual_revenue_potential AS DECIMAL(18,2))
-		FROM bronze.customers;
+        )
+        SELECT 
+            TRIM(customer_id),
+            TRIM(customer_name),
+            UPPER(LEFT(TRIM(customer_type), 1)) + LOWER(SUBSTRING(TRIM(customer_type), 2, LEN(customer_type))),
+            ISNULL(credit_term_days, 30),
+            UPPER(LEFT(TRIM(primary_freight_type), 1)) + LOWER(SUBSTRING(TRIM(primary_freight_type), 2, LEN(primary_freight_type))),
+            UPPER(LEFT(TRIM(account_status), 1)) + LOWER(SUBSTRING(TRIM(account_status), 2, LEN(account_status))),
+            TRY_CAST(contract_start_date AS DATE),
+            CAST(annual_revenue_potential AS DECIMAL(18,2))
+        FROM bronze.customers;
 			
 		SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
@@ -480,40 +479,33 @@ BEGIN
 		TRUNCATE TABLE silver.trips;
 		PRINT '>> Inserting Data Into: silver.trips';
 		INSERT INTO silver.trips (
-			trip_id ,
+            trip_id, 
 			load_id,
-			driver_id ,
-			truck_id  ,
-			trailer_id ,
-			dispatch_date,
-			actual_distance_miles,
-			actual_duration_hours ,
-			fuel_gallons_used,
+			driver_id,
+			truck_id,
+			trailer_id,
+            dispatch_date,
+			actual_distance_miles, 
+			actual_duration_hours,
+            fuel_gallons_used, 
 			average_mpg,
-			idle_time_hours ,
+			idle_time_hours,
 			trip_status 
-		)
-		SELECT 
-			TRIM(trip_id),
-			TRIM(load_id), 
-			ISNULL(NULLIF(TRIM(driver_id), ''), 'Unknown_Driver') AS driver_id,
-			ISNULL(NULLIF(TRIM(truck_id), ''), 'Unknown_Truck') AS truck_id,
-			ISNULL(NULLIF(TRIM(trailer_id), ''), 'Unknown_Trailer') AS trailer_id,
-			TRY_CAST(dispatch_date AS DATE),
-			CAST(actual_distance_miles AS DECIMAL(10, 2)),
-			CAST(actual_duration_hours AS DECIMAL(10, 2)),
-			CAST(fuel_gallons_used AS DECIMAL(10, 2)),
-			CAST(average_mpg AS DECIMAL(5, 2)),
-			CAST(idle_time_hours AS DECIMAL(10, 2)),
-			TRIM(trip_status)
-		FROM (
-			SELECT *, ROW_NUMBER() OVER (
-				PARTITION BY trip_id 
-				ORDER BY (SELECT NULL)
-			) as rn
-			FROM bronze.trips
-		) t
-		WHERE rn = 1 AND trip_id IS NOT NULL;
+        )
+        SELECT 
+            TRIM(trip_id), TRIM(load_id), 
+            ISNULL(NULLIF(TRIM(driver_id), ''), 'Unknown_Driver'),
+            ISNULL(NULLIF(TRIM(truck_id), ''), 'Unknown_Truck'),
+            ISNULL(NULLIF(TRIM(trailer_id), ''), 'Unknown_Trailer'),
+            TRY_CAST(dispatch_date AS DATE),
+            CAST(actual_distance_miles AS DECIMAL(10, 2)),
+            CAST(actual_duration_hours AS DECIMAL(10, 2)),
+            CAST(fuel_gallons_used AS DECIMAL(10, 2)),
+            CAST(average_mpg AS DECIMAL(5, 2)),
+            CAST(idle_time_hours AS DECIMAL(10, 2)),
+            TRIM(trip_status)
+        FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY trip_id ORDER BY (SELECT NULL)) as rn FROM bronze.trips) t
+        WHERE rn = 1 AND trip_id IS NOT NULL;
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> -------------';
@@ -623,4 +615,11 @@ WHERE rn = 1 AND truck_id IS NOT NULL;
 	END CATCH
 END
 
+		/*
+===============================================================================
+Execution Command
+===============================================================================
+Run the following command to execute the ETL pipeline and refresh the Silver Layer.
+*/
+		
 EXEC Silver.load_silver;
