@@ -39,7 +39,7 @@ This **End-to-End Business Intelligence Suite** transforms raw transactional log
 *Click on any image to view it in high resolution.*
 
 ### **01. Landing & Navigation Hub**
-[<img src="01_Home_Page.jpg" width="1000" alt="Home Page">](01_Home_Page.jpg)
+[<img src="01_Home_Page.jpg" width="1000" alt="Home Page">](01_Home_Page.png)
 > **Insight:** Features an intuitive navigation system with custom "Selected" states to guide users through four distinct operational domains.
 
 ### **02. Executive Financial Overview**
