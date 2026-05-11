@@ -37,7 +37,7 @@ This **End-to-End Business Intelligence Suite** transforms raw transactional log
 > **Insight:** Features an intuitive navigation system with custom "Selected" states to guide users through four distinct operational domains.
 
 ### **02. Executive Financial Overview**
-[<img src="Assets/02_Executive_Financial_Overview.png" width="1000" alt="Financial Overview">]Assets/(Assets/02_Executive_Financial_Overview.png)
+[<img src="Assets/02_Executive_Financial_Overview.png" width="1000" alt="Financial Overview">](Assets/02_Executive_Financial_Overview.png)
 > **Insight:** Strategic view of margin protection. Includes a **Customer Profitability Scatter Plot** and "Accessorial Impact" tracking to monitor hidden costs.
 
 ### **03. Operational Efficiency & Assets**
