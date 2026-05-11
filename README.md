@@ -1,11 +1,11 @@
-# 🚛 Fleet Performance & Supply Chain Intelligence Suite
+# Logistics Intelligence Command Center: Executive BI Suite
 
-## Executive Overview
-This **End-to-End Business Intelligence Suite** transforms raw transactional logistics data into actionable executive insights. Developed for a multi-regional freight operation, the dashboard provides a high-fidelity "Control Center" experience to monitor financial health, asset utilization, and safety compliance.
+## 📌 Project Overview
+This project transforms raw, transactional logistics data into a multi-page, interactive **Executive BI Suite**. Designed for a modern fleet operation, the dashboard provides a "single pane of glass" view across Financial Health, Operational Efficiency, Delivery Performance, and Fleet Safety.
 
 ---
 
-### 🔗 Quick Access
+## 🚀 Documentation & Quick Links
 
 * 📊 [**View Executive Performance Report (PDF)**](Report_and_Dashboard/Fleet_Performance_Supply_Chain_Intelligence_Report.pdf)
   
@@ -13,62 +13,63 @@ This **End-to-End Business Intelligence Suite** transforms raw transactional log
   
 * 💾 [**View SQL Gold-Layer Transformation Scripts**](SQL_Scripts/02_Gold_Reporting_Views.sql)
 
----
-
-## 🛠️ Technical Architecture
-
-#### **Backend Architecture & Data Transformation**
-* **Medallion Pipeline:** Orchestrated a Bronze-to-Silver ETL process using Stored Procedures to clean, deduplicate (via `ROW_NUMBER`), and standardize raw telemetry data.
-* **SQL Gold Layer:** Engineered a series of T-SQL views to denormalize a complex Snowflake schema into a high-performance Star Schema, optimizing refresh efficiency.
-* **Data Integrity:** Implemented `ISNULL` and `COALESCE` logic within the SQL layer to ensure 100% metric accuracy across financial and safety reporting.
-
-#### **Analytical Modeling & Business Logic**
-* **KPI Intelligence:** Built a custom library of calculated measures to track multi-dimensional metrics, including **Net Profit Margin** and **Asset Utilization Rates**.
-* **Categorical Engineering:** Developed custom logic for **Driver Experience Tiers** (Rookie to Veteran) and **Safety Incident Flags** to provide deeper HR and risk insights.
-* **Exception Reporting:** Utilized advanced filtering and diverging visualization logic to identify **High-Yield vs. High-Loss Lanes** and facilities with high detention risk.
+  ---
+  
+## 🖼️ Dashboard Gallery
+| Navigation Page | Preview Link |
+| :--- | :--- |
+| **01. Home Portal** | [View Image](01_Home_Page.jpg) |
+| **02. Executive Financial Overview** | [View Image](02_Executive_Financial_Overview.png) |
+| **03. Operational & Asset Efficiency** | [View Image](03_Operational%20&%20Asset.png) |
+| **04. Logistic & Delivery Performance** | [View Image](04_Logistic%20&%20Delivery.png) |
+| **05. Fleet & Safety Management** | [View Image](05_Fleet%20&%20Safety.png) |
 
 ---
 
-## 📊 Dashboard Gallery
-*Click on any image to view it in high resolution.*
+## 🛠️ Technical Stack
+* **SQL Server (T-SQL):** Engineered a **"Gold Layer"** using complex Views to ensure data integrity and performance.
+* **Power BI:** Developed a multi-page suite utilizing advanced DAX, SVG-based sparklines, and custom UI/UX design.
+* **Data Modeling:** Implemented a **Star Schema** with centralized Fact tables and optimized Dimension tables.
 
-### **01. Landing & Navigation Hub**
-[<img src="Assets/01_Home_Page.png" width="1000" alt="Home Page">](Assets/01_Home_Page.png)
-> **Insight:** Features an intuitive navigation system with custom "Selected" states to guide users through four distinct operational domains.
+## 📐 Data Modeling
+The analytical model is designed as a **Star Schema**, ensuring efficient query performance and clear relationship management. This architecture allows for seamless filtering across all four reporting pillars.
 
-### **02. Executive Financial Overview**
-[<img src="Assets/02_Executive_Financial_Overview.png" width="1000" alt="Financial Overview">](Assets/02_Executive_Financial_Overview.png)
-> **Insight:** Strategic view of margin protection. Includes a **Customer Profitability Scatter Plot** and "Accessorial Impact" tracking to monitor hidden costs.
-
-### **03. Operational Efficiency & Assets**
-[<img src="Assets/03_Operational_Efficiency_and_Assets.png" width="1000" alt="Asset Analysis">](Assets/03_Operational_Efficiency_and_Assets.png)
-> **Insight:** Technical fleet management focusing on **MPG vs. Utilization correlation** and manufacturer-specific maintenance trends.
-
-### **04. Driver Performance & Safety**
-[<img src="Assets/04_Driver_Performance_and_Safety.png" width="1000" alt="Safety Analysis">](Assets/04_Driver_Performance_and_Safety.png)
-> **Insight:** Now featuring enhanced **Experience Tier** (Rookie to Veteran) breakdowns. Includes a **Year-over-Year Safety Incident Distribution** chart.
-
-### **05. Logistic & Facility Analysis**
-[<img src="Assets/05_Logistic_and_Facility_Analysis.png" width="1000" alt="Facility Analysis">](Assets/05_Logistic_and_Facility_Analysis.png)
-> **Insight:** Tactical view of hub throughput. Utilizes a **Diverging Bar Chart** to identify "High-Yield vs. High-Loss Lanes" and identifies facilities with high detention risk.
+![Data Model](Data_Model_Image.png)  
+*(Note: Ensure your model screenshot is named 'Data_Model_Image.png' in the repository)*
 
 ---
 
-## 🏗️ Data Model (Star Schema)
-[<img src="Assets/Logistics_Star_Schema_Data_Model.png" width="1000" alt="Data Model">](Assets/Logistics_Star_Schema_Data_Model.png)
-*Architecture showing the refined relationship between Gold Layer Fact tables and Dimensions.*
+## 🚀 Key Features & Analytical Deep Dives
+
+### 1. Executive Financial Overview
+* **Profitability Indexing:** Identifies "High-Yield" vs. "Bottom Performing" lanes using a diverging bar chart to pinpoint revenue leakage.
+* **Efficiency Tracking:** Combines Revenue bars with a Profit Margin % line to monitor scale vs. profitability over a 12-month cycle.
+
+### 2. Operational Efficiency
+* **Detention Risk Heatmap:** A high-resolution heatmap visualizing wait times by facility, allowing managers to identify bottlenecks in real-time.
+* **Mileage Variance Analysis:** Tracks the gap between planned vs. actual miles to improve route planning accuracy.
+
+### 3. Logistic & Delivery Performance
+* **SLA Reliability:** Routes ranked by on-time performance to identify service level risks.
+* **Correlation Analysis:** A scatter plot investigating the direct impact of Hub Detention on overall Service Levels.
+
+### 4. Fleet & Safety Management
+* **Critical Failure Analysis:** Breakdown of unplanned repairs by component (Transmission, Brake, Engine) to guide preventative maintenance schedules.
+* **Risk Profiling:** Correlates incident rates with driver tenure to inform training programs.
 
 ---
 
-## 🚀 Deployment & SQL Scripts
-1. **Database Setup:** Run the scripts in the `/SQL_Scripts` folder to build the Bronze, Silver, and Gold layers.
-2. **ETL Execution:** Run `EXEC silver.load_silver` to process and standardize raw data.
-3. **Power BI:** Open the `.pbix` file and refresh to see the modeled data in action.
+## 📈 Technical "Flex" (Advanced Implementation)
+* **Custom SVG Sparklines:** Built using custom DAX measures to allow for dynamic "High/Low" point coloring and brand-consistent styling.
+* **UX-First Design:** Implemented a "Dark Mode" UI with a custom navigation system, synchronized slicers, and a consistent "Glow" indicator for active pages.
 
 ---
 
-**Author:** Meenakshi Singh  
-**Role:** Aspiring Data Analyst | SQL & Power BI Specialist  
+## 💡 Business Impact
+By centralizing these four distinct pillars of logistics, this suite allows stakeholders to move from **reactive** reporting to **proactive** strategy—reducing maintenance costs by identifying failing components early and recovering margins by optimizing low-performing routes.
+
+---
+**Author:** Meenakshi Singh | Data Analyst | SQL Engineering | Power BI Architecture
 
 
 
