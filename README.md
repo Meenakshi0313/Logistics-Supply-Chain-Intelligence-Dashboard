@@ -34,7 +34,7 @@ This project transforms raw, transactional logistics data into a multi-page, int
 ## 📐 Data Modeling
 The analytical model is designed as a **Star Schema**, ensuring efficient query performance and clear relationship management. This architecture allows for seamless filtering across all four reporting pillars.
 
-![Data Model](Data_Model.png)  
+![Data Model](Assets/Data_Model.png)  
 
 
 ---
